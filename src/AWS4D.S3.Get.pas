@@ -28,10 +28,8 @@ uses
   System.StrUtils,
   Data.Cloud.AmazonAPI,
   Data.Cloud.CloudAPI,
-  System.SysUtils
-  {$IFNDEF HAS_FMX}
-  , Jpeg
-  {$ENDIF};
+  System.SysUtils,
+  Jpeg;
 
 { TBind4DAmazonS3Get }
 

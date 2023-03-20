@@ -27,14 +27,10 @@ package AWS4D;
 {$ENDIF IMPLICITBUILDING}
 {$IMPLICITBUILD ON}
 
-
-
 requires
   rtl,
   vcl,
-  xmlrtl,
-  vclimg,
-  CloudService;
+  xmlrtl;
 
 contains
   AWS4D.Interfaces in 'src\AWS4D.Interfaces.pas',

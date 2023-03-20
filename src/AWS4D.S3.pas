@@ -3,10 +3,10 @@ interface
 uses
   System.Classes,
   AWS4D.Interfaces,
+  Jpeg,
   {$IFDEF HAS_FMX}
     FMX.Objects;
   {$ELSE}
-    Jpeg,
     Vcl.ExtCtrls;
   {$ENDIF}
 type
@@ -76,13 +76,7 @@ begin
     FContentByteStream.Free;
   inherited;
 end;
-
 function TAWS4DS3.FromImage(var aValue: TImage): iAWS4DS3;
-{$IFDEF HAS_FMX}
-begin
-  aValue.Bitmap.LoadFromStream(FContentByteStream);
-end;
-{$ELSE}
 var
   FJpegImage : TJpegImage;
 begin
@@ -90,13 +84,15 @@ begin
   FJpegImage := TJpegImage.Create;
   try
     FJpegImage.LoadFromStream(FContentByteStream);
-    aValue.Picture.Assign(FJpegImage);
+    {$IFDEF HAS_FMX}
+      aValue.Bitmap.LoadFromStream(FContentByteStream);
+    {$ELSE}
+      aValue.Picture.Assign(FJpegImage);
+    {$ENDIF}
   finally
     FJpegImage.Free;
   end;
 end;
-{$ENDIF}
-
 function TAWS4DS3.GetFile: iAWS4DS3GetFile;
 begin
   Result := TAWS4DS3GetFile.New(Self);

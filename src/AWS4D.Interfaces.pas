@@ -4,10 +4,10 @@ interface
 
 uses
   System.Classes,
+  Jpeg,
   {$IFDEF HAS_FMX}
     FMX.Objects;
   {$ELSE}
-    Jpeg,
     Vcl.ExtCtrls;
   {$ENDIF}
 
